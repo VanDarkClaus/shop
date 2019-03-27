@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>登录</title>
+		<link rel="stylesheet" type="text/css" href="../libs/bootstrap/css/bootstrap.min.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/mycss.css"/>
+		<script src="../libs/jquery/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../libs/tools.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<h1 class="text-primary">登录</h1>
+<div id="box">
+                  <div class="form-group">
+				    <label for="exampleInputEmail1">账号</label>
+				    <input type="text" class="form-control" id="name">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputPassword1">密码</label>
+				    <input type="text" class="form-control" id="psw">
+				  </div>
+				  <div class="checkbox">
+				    <label>
+				      <input type="checkbox" id="nologin"> 记住密码
+				      <a class="forget" href="register.html">忘记密码？去注册</a>
+				    </label>
+				  </div>
+				  <button class="btn btn-default">登录</button>
+</div>
+		<script type="text/javascript">
+			class  Login{
+			 constructor(box){
+				 this.box=box;
+				 this.name=box.querySelector("#name");
+				 this.psw=box.querySelector("#psw");
+				 this.btn=box.querySelector("button");
+				 this.nologin=box.querySelector("#nologin");
+				 this.init();
+			 }
+			 init(){
+			 	this.check();
+				 this.click();
+			}
+			 check(){//记住密码
+			 	if(tools.cookie("register")){//如果注册的cookie存在
+			 		this.register();
+			 	}else{
+			 		if(tools.cookie("login")){//如果登录cookie存在
+			 			
+			 			if(this.nologin.checked){//如果记住密码存在
+			 				var login=tools.cookie("login");
+			 				console.log(login);
+			 				this.name.value=login.user;
+				            this.psw.value=login.psw;
+			 			}
+			 		}
+			 	}
+			 	
+			 }
+			click(){//点击事件
+				this.btn.onclick=()=>{
+					var value1=this.name.value;
+					var value2=this.psw.value;
+					var nologin=this.nologin;
+                   tools.ajaxPost("../api/v1/php/login.php",{"user":this.name.value,"psw":this.psw.value},function(res){
+                   if(res){
+                   	if(nologin.checked){//如果记住密码，存三天
+                   		tools.cookie("login",{"user":value1,"psw":value2},{"path":"/","expires":3})//存登录cookie
+                   	}else{//否则记住一次
+                   		tools.cookie("login",{"user":value1,"psw":value2},{"path":"/"})
+                   	}
+                   	alert("登录成功");
+                   	location.href="../index.html";
+                   }else{
+                   	alert("登录失败");
+                   }
+                   })
+				}
+				return false;
+			 }
+			register(){//cookie取到input中
+				var register=tools.cookie("register");
+				console.log(register);
+				this.name.value=register.user;
+				this.psw.value=register.psw;
+				tools.cookie("register","",{"path":"/","expires":-1});//取出后删除cookie
+				
+			}
+		  }
+		  new Login(document.querySelector("#box"));
+		</script>
+</body>
+</html>

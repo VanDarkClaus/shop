@@ -1,0 +1,55 @@
+html,body{
+	width: 100%;
+}
+h1{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+main{
+	width: 60%;
+	margin: auto;
+}
+.cart-right{
+	border-right: 1px solid white!important;
+}
+
+main .input{
+	display: none;
+}
+main .confirm{
+	display: none;
+}
+main .cancel{
+	display: none;
+}
+.change input{
+	display: block;
+}
+.change .glyphicon-menu-up{
+	display: none;
+}
+.change .glyphicon-menu-down{
+	display: none;
+}
+.change .num{
+	display: none;
+}
+.change .edit{
+	display: none;
+}
+.change .delete{
+	display: none;
+}
+.change .confirm{
+	display: inline-block;
+}
+.change .cancel{
+	display: inline-block;
+}
+.glyphicon-menu-up{
+	cursor: pointer;
+}
+.glyphicon-menu-down{
+	cursor: pointer;
+}

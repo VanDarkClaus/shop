@@ -1,0 +1,21 @@
+h1{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+html,body{
+	width: 100%;
+}
+#box{
+	padding-top: 3%;
+	width: 40%;
+	margin: auto;
+}
+.forget{
+	margin-left:10% ;
+}
+label{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}

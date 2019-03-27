@@ -1,0 +1,44 @@
+.mybtn{
+	margin-bottom: 20px;
+}
+.navbar{
+	padding-left: 10%;
+	padding-right: 10%;
+}
+html,body{
+	width: 100%;
+}
+.main{
+	margin:auto;
+	width: 80%;
+}
+.main table tbody input{
+	display: none;
+}
+.main table tbody .btn-success{
+	display: none;
+}
+.main table tbody .btn-info{
+	display: none;
+}
+.edit span{
+	display: none;
+}
+.edit input{
+	display: inline-block!important;
+}
+.edit .btn-primary{
+	display: none;
+}
+.edit .btn-danger{
+	display: none;
+}
+.edit .add{
+	display: none;
+}
+.edit .btn-success{
+	display: inline-block!important;
+}
+.edit .btn-info{
+	display: inline-block!important;
+}
